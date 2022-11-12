@@ -1,0 +1,13 @@
+name: V_v2
+version: 0.3
+predecessor: 04e3201ce8cfe31542aa3a89954b3e9bda5f24a148b7d5cbf137f85c07e1c149
+
+security:
+  attestation:
+    mode: none
+
+volumes:
+  - name: vol
+    export:
+      - session: P1_v3
+      - session: P2_v3

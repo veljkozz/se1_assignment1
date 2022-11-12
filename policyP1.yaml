@@ -1,0 +1,26 @@
+name: P1_v3
+version: 0.3
+predecessor: 
+
+volumes: 
+- name: my_vol
+  import:
+    session: V_v2
+    volume: vol
+  
+images:
+  - name: my_image
+    volumes:
+      - name: my_vol
+        path: /volumes/v1
+
+security:
+  attestation:
+    one_time_password_shared_secret: BASE32SECRET3232BASE32SECRET3232
+    mode: none
+
+services:
+   - name: scone-print-arg-env
+     image_name: my_image
+     command: ./scone-print-arg-env start @@1 @@2 @@3 last
+     pwd: /

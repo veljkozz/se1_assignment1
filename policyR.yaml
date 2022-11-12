@@ -1,0 +1,15 @@
+name: R_v2
+version: 0.3
+predecessor: c17c43a9f40050a8fe3f078562167ab43a3a73c6e18abd0a206d532cfdc27b2f
+
+security:
+  attestation:
+    mode: none
+
+secrets:
+  - name: keyR
+    kind: binary
+    size: 32
+    export:
+      - session: P2_v3
+

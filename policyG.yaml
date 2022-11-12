@@ -1,0 +1,15 @@
+name: G_v2
+version: 0.3
+predecessor: 989e08e791752ee4b5b9e388b18aceaf60fd6b5533af8d8f52442c5d46f1f1ab
+
+security:
+  attestation:
+    mode: none
+
+secrets:
+  - name: keyG
+    kind: binary
+    size: 32
+    export:
+      - session: P2_v3
+

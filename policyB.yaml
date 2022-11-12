@@ -1,0 +1,15 @@
+name: B_v2
+version: 0.3
+predecessor: 1ebc68166eda13f43b0331f2bada473981a4a982c3f8af5f31f047be02ccc2e4
+
+security:
+  attestation:
+    mode: none
+
+secrets:
+  - name: keyB
+    kind: binary
+    size: 32
+    export:
+      - session: P2_v3
+

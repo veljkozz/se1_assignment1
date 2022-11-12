@@ -1,0 +1,47 @@
+name: P2_v3
+version: 0.3
+predecessor: fb132a5c1a03792e5c7b947b25cacc7b74b322ac8b4bc738137751bee7ff831ebash-5.1#
+
+images:
+  - name: my_image
+    volumes:
+      - name: my_vol
+        path: /volumes/v1
+    injection_files: 
+      - path: /work/secrets/keyR.bin
+        content: $$SCONE::keyR$$
+      - path: /work/secrets/keyG.bin
+        content: $$SCONE::keyG$$
+      - path: /work/secrets/keyB.bin
+        content: $$SCONE::keyB$$
+security:
+  attestation:
+    #one_time_password_shared_secret: BASE32SECRET3232BASE32SECRET3232
+    mode: none
+
+services:
+   - name: p2
+     image_name: my_image
+     command: ./p2
+     pwd: /
+
+
+volumes: 
+- name: my_vol
+  import:
+    session: V_v2
+    volume: vol
+
+secrets:
+  - name: keyR
+    import:
+      session: R_v2
+      secret: keyR
+  - name: keyG
+    import:
+      session: G_v2
+      secret: keyG
+  - name: keyB
+    import:
+      session: B_v2
+      secret: keyB

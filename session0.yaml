@@ -1,0 +1,50 @@
+---
+version: "0.3"
+name: P2_v3
+predecessor: ~
+images:
+  - name: my_image
+    injection_files:
+      - path: /work/keyR
+        content: "$$SCONE::keyR$$"
+      - path: /work/secrets/keyG
+        content: "$$SCONE::keyG$$"
+      - path: /work/secrets/keyB
+        content: "$$SCONE::keyB$$"
+    volumes:
+      - name: my_vol
+        path: /volumes/v1
+secrets:
+  - name: keyR
+    import:
+      session: R_v2
+      secret: keyR
+  - name: keyG
+    import:
+      session: G_v2
+      secret: keyG
+  - name: keyB
+    import:
+      session: B_v2
+      secret: keyB
+services:
+  - name: p2
+    image_name: my_image
+    command: "./p2"
+    pwd: /
+    persistency: None
+volumes:
+  - name: my_vol
+    import:
+      session: V_v2
+      volume: vol
+access_policy:
+  read:
+    - CREATOR
+  update:
+    - CREATOR
+security:
+  attestation:
+    mode: none
+creator: "-----BEGIN CERTIFICATE-----\nMIIBUTCB+KADAgECAgguJkvJc34w9zAKBggqhkjOPQQDAjAhMR8wHQYDVQQDDBZy\nY2dlbiBzZWxmIHNpZ25lZCBjZXJ0MCAXDTc1MDEwMTAwMDAwMFoYDzQwOTYwMTAx\nMDAwMDAwWjAhMR8wHQYDVQQDDBZyY2dlbiBzZWxmIHNpZ25lZCBjZXJ0MFkwEwYH\nKoZIzj0CAQYIKoZIzj0DAQcDQgAECiBq4P4CAEeK8hfH1GXu2fguUyxxx3prXURu\n3JbrGK9bklteReh30XgZenXf/4n77BBIV9in5ngmgVNn/F607KMYMBYwFAYDVR0R\nBA0wC4IJc2NvbmUgY2xpMAoGCCqGSM49BAMCA0gAMEUCIQCx/g3w/7E3amm8WIbI\nQjgdONeTW7ezzdJeAPewn0m2BwIgIq20UXUked4Z3Xih7LhloWv9MzMMpYMdY+p4\nbyl7BEY=\n-----END CERTIFICATE-----\n"
+
